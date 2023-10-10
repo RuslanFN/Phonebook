@@ -1,38 +1,18 @@
-def print_start_messege():
+def __print_start_messege__():
     print('Добро пожаловать в телефонный справочник')
     print('Ознакомьтесь с командами управления справочником')
 
-def print_rules():
+def __print_rules__():
     print('1. Для добавления записи в справочник напишите команду «Добавить» в формате: \n\t-Добавить ИМЯ ФАМИЛИЯ НОМЕР')
     print('2. Для поиска записи в файле необходимо ввести команду «ПОИСК» в формате: \n\t- Поиск ИМЯ;\n\t- Поиск ФАМИЛИЯ;\n\t- Поиск ИМЯ ФАМИЛИЯ')
     print('3. Для удаления товара введите команду «Удалить» в формате: \n\t- Удалить НОМЕР')
     print('4. Для повторного вывода информации используйте команду «Команды»')
 
-def valid_command():
-    command = input()
-    if command == '':
-        return -1
-    split_command = command.split()
-    head_cmd = split_command[0].lower() 
-    if head_cmd == 'добавить':
-        if len(split_command) == 4:
-            return 'добавить'
-        else: return 'неправильный ввод'
-    
-    elif head_cmd == 'поиск':
-        if len(split_command) == 3 or len(split_command) == 2:
-            return 'поиск'
-        else: return 'неправильный ввод'
-
-    elif head_cmd == 'удалить':
-        if len(split_command) == 2:
-            return 'удалить'
-        else: return 'неправильный ввод'
-
-    elif head_cmd == 'команды':
-        if len(split_command) == 1:
-            return 'команды'
-        else: return 'неправильный ввод'
-    else:
-        print('Такой команды нет')
-    
+def start(phone_dict):
+    __print_start_messege__()
+    __print_rules__()
+    while True:
+        cmd = input().lower()
+        if cmd == 'команды': __print_rules__()
+        elif cmd == 'стоп': break
+        else: phone_dict.command_manager(cmd)
